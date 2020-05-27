@@ -27,10 +27,6 @@ spec:
       containers:
       - image: seanmcguigan/poker:0.1.0
         name: poker
-        volumeMounts:
-        - name: tls-certs
-          mountPath: /tls
-          readOnly: true
         resources:
           requests:
             cpu: "500m"
@@ -50,10 +46,6 @@ spec:
           initialDelaySeconds: 0
           failureThreshold: 3
           successThreshold: 1
-      volumes:
-      - name: tls-certs
-        secret:
-          secretName: kuard-tls
 ---
 apiVersion: v1
 kind: Service
@@ -70,7 +62,6 @@ spec:
     targetPort: 3000
   selector: #adding this creates an endpoints object (pod ips) automagically.
     app: poker
-  type: NodePort
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
