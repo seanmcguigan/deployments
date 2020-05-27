@@ -1,0 +1,85 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: poker
+  name: poker
+spec:
+  minReadySeconds: 60
+  progressDeadlineSeconds: 120
+  revisionHistoryLimit: 14
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: poker
+  template:
+    metadata:
+      annotations:
+        kubernetes.io/change-cause: ""
+      labels:
+        app: poker
+    spec:
+      containers:
+      - image: seanmcguigan/poker:0.1.0
+        name: poker
+        volumeMounts:
+        - name: tls-certs
+          mountPath: /tls
+          readOnly: true
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "128Mi"
+          limits:
+            cpu: "1000m"
+            memory: "256Mi"
+        ports: 
+        - containerPort: 3000
+          name : http
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /lobby-data
+            port: 3000
+          periodSeconds: 2
+          initialDelaySeconds: 0
+          failureThreshold: 3
+          successThreshold: 1
+      volumes:
+      - name: tls-certs
+        secret:
+          secretName: kuard-tls
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: poker
+  name: poker
+  namespace: default
+spec:
+  ports:
+  - port: 8080
+    name: http
+    protocol: TCP
+    targetPort: 3000
+  selector: #adding this creates an endpoints object (pod ips) automagically.
+    app: poker
+  type: NodePort
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: poker
+spec:
+  maxReplicas: 5
+  minReplicas: 1
+  scaleTargetRef:
+    kind: Deployment
+    name: poker
+  targetCPUUtilizationPercentage: 50
