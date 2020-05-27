@@ -5,6 +5,7 @@ metadata:
   labels:
     app: poker
   name: poker
+  namespace: clim8
 spec:
   minReadySeconds: 60
   progressDeadlineSeconds: 120
@@ -67,7 +68,7 @@ metadata:
   labels:
     app: poker
   name: poker
-  namespace: default
+  namespace: clim8
 spec:
   ports:
   - port: 8080
@@ -81,6 +82,7 @@ apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: poker
+  namespace: clim8
 spec:
   maxReplicas: 5
   minReplicas: 1
