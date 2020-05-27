@@ -47,9 +47,15 @@ spec:
           failureThreshold: 3
           successThreshold: 2
         volumeMounts:
-        - name: foo
+        - name: db-secret
           mountPath: "/etc/foo"
           readOnly: true
+        env:
+        - name: DB_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: db-password
+              key: password 
       volumes:
       - name: db-secret
         secret:
