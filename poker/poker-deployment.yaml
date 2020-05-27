@@ -45,7 +45,15 @@ spec:
           periodSeconds: 2
           initialDelaySeconds: 0
           failureThreshold: 3
-          successThreshold: 1
+          successThreshold: 2
+        volumeMounts:
+        - name: foo
+          mountPath: "/etc/foo"
+          readOnly: true
+      volumes:
+      - name: db-secret
+        secret:
+          secretName: db-password
 ---
 apiVersion: v1
 kind: Service
@@ -60,7 +68,7 @@ spec:
     name: http
     protocol: TCP
     targetPort: 3000
-  selector: #adding this creates an endpoints object (pod ips) automagically.
+  selector:
     app: poker
 ---
 apiVersion: autoscaling/v1
