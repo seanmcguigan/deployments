@@ -78,15 +78,22 @@ spec:
   selector:
     app: poker
 ---
-apiVersion: autoscaling/v1
+apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: poker
   namespace: clim8
 spec:
-  maxReplicas: 5
-  minReplicas: 1
   scaleTargetRef:
+    apiVersion: apps/v1
     kind: Deployment
     name: poker
-  targetCPUUtilizationPercentage: 50
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
