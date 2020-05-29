@@ -16,9 +16,9 @@ spec:
   values:
     persistence:
       enabled: false
-    image:
-      image: "seanmcguigan/jenkins"
-      tag: "dev-12345"
+    image: "seanmcguigan/jenkins"
+    registry: docker.io
+    tag: dev-12345
      # pullSecret: gpr-docker-pull
      # pullPolicy: IfNotPresent
     replicaCount: 1
