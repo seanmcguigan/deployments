@@ -9,7 +9,7 @@ metadata:
 spec:
   releaseName: jenkins-dev
   chart:
-    git: ssh://git@github.com:seanmcguigan/deployments.git
+    git: https://github.com/seanmcguigan/deployments.git
     path: charts/jenkins
     ref: development
   values:
