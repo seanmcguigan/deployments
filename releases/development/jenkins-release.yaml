@@ -11,7 +11,7 @@ spec:
   chart:
     git: git@github.com:seanmcguigan/deployments.git
     path: charts/jenkins
-    ref: master
+    ref: development
   values:
     image:
       repository: seanmcguigan/jenkins
