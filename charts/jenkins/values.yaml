@@ -65,6 +65,8 @@ master:
         hYAzODo1Jt59pcqqKJEas0C/lFJEB3frw4ImNx5fNlJYOpx+ijfQs9m39CevDq0=
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-master"
+  image: "seanmcguigan/jenkins"
+  tag: "dev-12345"
   # image: "jenkins/jenkins"
   # tag: "lts"
   imagePullPolicy: "Always"
