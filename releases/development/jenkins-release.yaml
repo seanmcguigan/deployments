@@ -10,9 +10,12 @@ spec:
   releaseName: jenkins-dev
   chart:
     git: https://github.com/seanmcguigan/deployments.git
+    # 
     path: charts/jenkins
     ref: development
   values:
+    persistence:
+      enabled: false
     image:
       registry: docker.io
       image: seanmcguigan/jenkins
