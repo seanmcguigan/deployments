@@ -65,8 +65,8 @@ master:
         hYAzODo1Jt59pcqqKJEas0C/lFJEB3frw4ImNx5fNlJYOpx+ijfQs9m39CevDq0=
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-master"
-  image: "jenkins/jenkins"
-  tag: "lts"
+  # image: "jenkins/jenkins"
+  # tag: "lts"
   imagePullPolicy: "Always"
   imagePullSecretName:
   # Optionally configure lifetime for master-container
