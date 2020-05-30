@@ -1,4 +1,3 @@
----
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
@@ -15,7 +14,9 @@ spec:
     ref: development
   values:
     replicaCount: 0
-    image: seanmcguigan/poker:dev-33333
+    image:
+      repository: seanmcguigan/poker
+      tag: dev-33333
     containerPort: 3000
     livenessProbe:
       httpGet:
