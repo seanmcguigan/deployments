@@ -5,7 +5,7 @@ metadata:
   name: poker-dev
   namespace: clim8
   annotations:
-    fluxcd.io/automated: "true"
+    fluxcd.io/automated: "false"
     filter.fluxcd.io/chart-image: glob:dev-*
 spec:
   releaseName: poker-dev
@@ -17,7 +17,7 @@ spec:
     replicaCount: 0
     image:
       repository: seanmcguigan/poker
-      tag: dev-55555
+      tag: dev-99999
     containerPort: 3000
     livenessProbe:
       httpGet:

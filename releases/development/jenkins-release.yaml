@@ -5,7 +5,7 @@ metadata:
   name: jenkins-dev
   namespace: clim8
   annotations:
-    fluxcd.io/automated: "true"
+    fluxcd.io/automated: "false"
     filter.fluxcd.io/chart-image: glob:dev-*
 spec:
   releaseName: jenkins-dev
@@ -18,7 +18,7 @@ spec:
       enabled: false
     master:
       image: seanmcguigan/jenkins
-      tag: dev-55555
+      tag: dev-99999
       # pullSecret: gpr-docker-pull
       # pullPolicy: IfNotPresent
       replicaCount: 1
