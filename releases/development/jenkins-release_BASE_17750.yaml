@@ -1,4 +1,3 @@
----
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
@@ -11,14 +10,15 @@ spec:
   releaseName: jenkins-dev
   chart:
     git: https://github.com/seanmcguigan/deployments.git
+    # 
     path: charts/jenkins
     ref: development
   values:
     persistence:
       enabled: false
     master:
-      image: seanmcguigan/jenkins
-      tag: dev-11745
+      image:  seanmcguigan/jenkins
+      tag: dev-12345
       # pullSecret: gpr-docker-pull
       # pullPolicy: IfNotPresent
       replicaCount: 1

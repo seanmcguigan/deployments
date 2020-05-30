@@ -18,7 +18,11 @@ spec:
       enabled: false
     master:
       image: seanmcguigan/jenkins
+<<<<<<< HEAD
+      tag: dev-12345
+=======
       tag: dev-11745
+>>>>>>> 036defdfd11265fc2291e46b828b59ba4c09bf1f
       # pullSecret: gpr-docker-pull
       # pullPolicy: IfNotPresent
       replicaCount: 1
