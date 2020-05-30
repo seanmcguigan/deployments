@@ -17,7 +17,8 @@ spec:
     persistence:
       enabled: false
     master:
-      image: seanmcguigan/jenkins:dev-33333
+      image: seanmcguigan/jenkins
+      tag: dev-33333
       # pullSecret: gpr-docker-pull
       # pullPolicy: IfNotPresent
       replicaCount: 1
