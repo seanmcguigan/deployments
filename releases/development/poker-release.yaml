@@ -15,7 +15,7 @@ spec:
   values:
     replicaCount: 0
     image:
-      repository: docker.io/seanmcguigan/poker
+      repository: seanmcguigan/poker
       pullPolicy: Always
       tag: "dev-12345"
     containerPort: 3000
