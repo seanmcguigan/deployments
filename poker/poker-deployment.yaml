@@ -1,99 +1,99 @@
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: poker
-  name: poker
-  namespace: clim8
-spec:
-  minReadySeconds: 60
-  progressDeadlineSeconds: 120
-  revisionHistoryLimit: 14
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
-  selector:
-    matchLabels:
-      app: poker
-  template:
-    metadata:
-      annotations:
-        kubernetes.io/change-cause: ""
-      labels:
-        app: poker
-    spec:
-      containers:
-      - image: seanmcguigan/poker:0.1.0
-        name: poker
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "128Mi"
-          limits:
-            cpu: "400m"
-            memory: "256Mi"
-        ports: 
-        - containerPort: 3000
-          name : http
-          protocol: TCP
-        readinessProbe:
-          httpGet:
-            path: /lobby-data
-            port: 3000
-          periodSeconds: 2
-          initialDelaySeconds: 0
-          failureThreshold: 3
-          successThreshold: 2
-        volumeMounts:
-        - name: db-secret
-          mountPath: "/etc/foo"
-          readOnly: true
-        env:
-        - name: DB_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: db-password
-              key: password 
-      volumes:
-      - name: db-secret
-        secret:
-          secretName: db-password
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: poker
-  name: poker
-  namespace: clim8
-spec:
-  ports:
-  - port: 8080
-    name: http
-    protocol: TCP
-    targetPort: 3000
-  selector:
-    app: poker
----
-apiVersion: autoscaling/v2beta2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: poker
-  namespace: clim8
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: poker
-  minReplicas: 1
-  maxReplicas: 5
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 50
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app: poker
+#   name: poker
+#   namespace: clim8
+# spec:
+#   minReadySeconds: 60
+#   progressDeadlineSeconds: 120
+#   revisionHistoryLimit: 14
+#   strategy:
+#     type: RollingUpdate
+#     rollingUpdate:
+#       maxSurge: 1
+#       maxUnavailable: 0
+#   selector:
+#     matchLabels:
+#       app: poker
+#   template:
+#     metadata:
+#       annotations:
+#         kubernetes.io/change-cause: ""
+#       labels:
+#         app: poker
+#     spec:
+#       containers:
+#       - image: seanmcguigan/poker:0.1.0
+#         name: poker
+#         resources:
+#           requests:
+#             cpu: "100m"
+#             memory: "128Mi"
+#           limits:
+#             cpu: "400m"
+#             memory: "256Mi"
+#         ports: 
+#         - containerPort: 3000
+#           name : http
+#           protocol: TCP
+#         readinessProbe:
+#           httpGet:
+#             path: /lobby-data
+#             port: 3000
+#           periodSeconds: 2
+#           initialDelaySeconds: 0
+#           failureThreshold: 3
+#           successThreshold: 2
+#         volumeMounts:
+#         - name: db-secret
+#           mountPath: "/etc/foo"
+#           readOnly: true
+#         env:
+#         - name: DB_SECRET
+#           valueFrom:
+#             secretKeyRef:
+#               name: db-password
+#               key: password 
+#       volumes:
+#       - name: db-secret
+#         secret:
+#           secretName: db-password
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     app: poker
+#   name: poker
+#   namespace: clim8
+# spec:
+#   ports:
+#   - port: 8080
+#     name: http
+#     protocol: TCP
+#     targetPort: 3000
+#   selector:
+#     app: poker
+# ---
+# apiVersion: autoscaling/v2beta2
+# kind: HorizontalPodAutoscaler
+# metadata:
+#   name: poker
+#   namespace: clim8
+# spec:
+#   scaleTargetRef:
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     name: poker
+#   minReplicas: 1
+#   maxReplicas: 5
+#   metrics:
+#   - type: Resource
+#     resource:
+#       name: cpu
+#       target:
+#         type: Utilization
+#         averageUtilization: 50
