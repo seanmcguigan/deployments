@@ -14,11 +14,11 @@ spec:
     path: charts/jenkins
     ref: development
   values:
-    image: seanmcguigan/jenkins
-      tag: dev-33333
     persistence:
       enabled: false
     master:
+      image: seanmcguigan/jenkins
+      tag: dev-33333
       # pullSecret: gpr-docker-pull
       # pullPolicy: IfNotPresent
       replicaCount: 1
