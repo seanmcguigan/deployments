@@ -18,7 +18,7 @@ spec:
       enabled: false
     master:
       image: seanmcguigan/jenkins
-      tag: dev-11745
+      tag: dev-88888
       # pullSecret: gpr-docker-pull
       # pullPolicy: IfNotPresent
       replicaCount: 1
