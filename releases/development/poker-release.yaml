@@ -16,7 +16,7 @@ spec:
     replicaCount: 0
     image:
       repository: seanmcguigan/poker
-      pullPolicy: Always
+      imagePullPolicy: Always
       tag: "dev-12345"
     containerPort: 3000
     livenessProbe:
@@ -35,7 +35,7 @@ spec:
       enabled: false
     resources:
       limits:
-        cpu: 100m
+        cpu: 200m
         memory: 128Mi
       requests:
         cpu: 100m

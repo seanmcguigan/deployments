@@ -5,8 +5,8 @@
 replicaCount: 0
 
 image:
-  repository: docker.io/seanmcguigan/poker
-  pullPolicy: Always
+  repository: seanmcguigan/poker
+  imagePullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "0.1.0"
 
