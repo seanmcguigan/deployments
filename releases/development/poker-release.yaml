@@ -15,7 +15,7 @@ spec:
     ref: development
   values:
     replicaCount: 0
-    image: seanmcguigan/poker:dev-33333
+    image: seanmcguigan/poker:dev-11111
     containerPort: 3000
     livenessProbe:
       httpGet:
