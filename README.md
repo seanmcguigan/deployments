@@ -1,5 +1,8 @@
 # deployments
 
+# create namespace
+kubectl create ns clim8
+
 # install flux
 helm upgrade -i flux fluxcd/flux --wait \
 --namespace fluxcd \
@@ -17,4 +20,8 @@ helm upgrade -i helm-operator fluxcd/helm-operator \
 
 # get flux public key
 fluxctl identity --k8s-fwd-ns fluxcd
+
+# teardown
+
+
 
