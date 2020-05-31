@@ -17,8 +17,8 @@ spec:
     replicaCount: 0
     image:
       repository: seanmcguigan/poker
-      tag: dev-0obffi
-    imagePullSecrets: regcred
+      tag: dev-1iiylo
+#    imagePullSecrets: regcred
     containerPort: 3000
     livenessProbe:
       httpGet:
