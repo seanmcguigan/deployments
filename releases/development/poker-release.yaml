@@ -17,7 +17,7 @@ spec:
     replicaCount: 0
     image:
       repository: seanmcguigan/poker
-      tag: dev-8late
+      tag: dev-0ioee
     containerPort: 3000
     livenessProbe:
       httpGet:
