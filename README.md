@@ -22,6 +22,11 @@ helm upgrade -i helm-operator fluxcd/helm-operator \
 fluxctl identity --k8s-fwd-ns fluxcd
 
 # teardown
+helm delete flux -nclim8 \
+helm delete helm-operator -nfluxcd \
+kubectl delete ns clim8 \
+kubectl delete crd helmreleases.helm.fluxcd.io
+
 
 
 
