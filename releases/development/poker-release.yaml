@@ -17,7 +17,7 @@ spec:
     replicaCount: 0
     image:
       repository: seanmcguigan/poker
-      tag: dev-0teeky
+      tag: dev-vPYps0dRblvVwKxvg0mGBPtUlbu5QVlA
     imagePullSecrets: regcred
     containerPort: 3000
     livenessProbe:
